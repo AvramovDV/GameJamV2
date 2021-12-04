@@ -1,13 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GameJam
 {
     public class ZombieIndicationUIView : BaseView, IRequireInjection<ZombieController>
     {
-        [SerializeField] private List<Image> _images;
+        [SerializeField] private List<ZombieImageView> _images;
 
         private ZombieController _zombieController;
 
@@ -40,7 +38,7 @@ namespace GameJam
 
             ResetSelection();
 
-            _images[index].color = Color.white;
+            _images[index].Select();
         }
 
         private void ResetSelection()
@@ -49,7 +47,7 @@ namespace GameJam
 
             for (int i = 0; i < count; i++)
             {
-                _images[i].color = Color.black;
+                _images[i].Deselect();
             }
         }
 
