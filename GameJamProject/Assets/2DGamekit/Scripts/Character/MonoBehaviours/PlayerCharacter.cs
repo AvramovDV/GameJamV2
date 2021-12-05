@@ -184,21 +184,7 @@ namespace Gamekit2D
         {
             if (PlayerInput.Instance.Pause.Down)
             {
-                if (!m_InPause)
-                {
-                    if (ScreenFader.IsFading)
-                        return;
-
-                    PlayerInput.Instance.ReleaseControl(false);
-                    PlayerInput.Instance.Pause.GainControl();
-                    m_InPause = true;
-                    Time.timeScale = 0;
-                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("UIMenus", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-                }
-                else
-                {
-                    Unpause();
-                }
+                Pause();
             }
         }
 
@@ -209,6 +195,25 @@ namespace Gamekit2D
             m_Animator.SetFloat(m_HashVerticalSpeedPara, m_MoveVector.y);
             UpdateBulletSpawnPointPositions();
             UpdateCameraFollowTargetPosition();
+        }
+
+        public void Pause()
+        {
+            if (!m_InPause)
+            {
+                if (ScreenFader.IsFading)
+                    return;
+
+                PlayerInput.Instance.ReleaseControl(false);
+                PlayerInput.Instance.Pause.GainControl();
+                m_InPause = true;
+                Time.timeScale = 0;
+                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("UIMenus", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            }
+            else
+            {
+                Unpause();
+            }
         }
 
         public void Unpause()

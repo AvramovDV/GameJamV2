@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Gamekit2D;
 using UnityEngine;
 
 namespace GameJam
